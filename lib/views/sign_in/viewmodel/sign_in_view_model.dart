@@ -16,15 +16,9 @@ class SignInViewModel {
           context.pushReplacementNamed(MyRouts.home);
         }
       } on FirebaseAuthException catch (e) {
-        if (e.code == FirebaseKey.userNotFound) {
-          showSnackBar(context, MyStrings.inValidEmail);
-        } else if (e.code == FirebaseKey.wrongPassword) {
-          showSnackBar(context, MyStrings.wrongPassword);
-        }else{
-          showSnackBar(context, MyStrings.notUser);
-        }
+          showSnackBar(context, MyStrings.wrongEmailOrPassword);
       } catch (e) {
-        showSnackBar(context, e.toString());
+        showSnackBar(context, MyStrings.connectError);
       }
       EasyLoading.dismiss();
     }
