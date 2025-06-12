@@ -16,11 +16,22 @@ class SignInViewModel {
           context.pushReplacementNamed(MyRouts.home);
         }
       } on FirebaseAuthException catch (e) {
-          showSnackBar(context, MyStrings.wrongEmailOrPassword);
+        showSnackBar(context, MyStrings.wrongEmailOrPassword);
       } catch (e) {
         showSnackBar(context, MyStrings.connectError);
       }
       EasyLoading.dismiss();
+    }
+  }
+
+  Future<void> googleLogin(BuildContext context) async {
+    try {
+      await firebaseService.loginWithGoogle();
+      if (context.mounted) {
+        context.pushReplacementNamed(MyRouts.home);
+      }
+    } catch (e) {
+      showSnackBar(context, MyStrings.connectError);
     }
   }
 }

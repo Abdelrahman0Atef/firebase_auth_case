@@ -10,7 +10,7 @@ class MyStrings{
   static const wrongEmailOrPassword = 'Wrong Email Or Password Chick It Again';
   static const weakPassword = 'Weak Password Make It Stronger Like You';
   static const accountExists = 'The Account Already Exists Try To Sign In';
-  static const connectError = 'There\'s an To In Connection Error Try Again';
+  static const connectError = 'There\'s an Error In Connection Try Again';
 }
 
 class FirebaseKey{
