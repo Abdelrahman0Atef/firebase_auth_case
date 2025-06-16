@@ -21,7 +21,10 @@ class AppRouter {
       ),GoRoute(
         name: MyRouts.home,
         path: '/${MyRouts.home}',
-        builder: (context, state) => const HomeView(),
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          return HomeView.fromRouteExtras(data);
+        },
       ),
     ],
   );

@@ -17,18 +17,18 @@ class SignInBody extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  MyStrings.name,
-                  style: TextStyle(fontSize: 32.sp, color: MyColors.black),
+                CustomText(
+                  text: MyStrings.name,
+                  fontSize: 32.sp, color: MyColors.black,
                 ),
               ],
             ),
             35.verticalSpace,
             Row(
               children: [
-                Text(
-                  MyStrings.signIn,
-                  style: TextStyle(fontSize: 24.sp, color: MyColors.black),
+                CustomText(
+                  text: MyStrings.signIn,
+                  fontSize: 24.sp, color: MyColors.black,
                 ),
               ],
             ),
@@ -60,17 +60,18 @@ class SignInBody extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  MyStrings.dontHaveAccount,
-                  style: TextStyle(color: MyColors.black),
+                const CustomText(
+                  text: MyStrings.dontHaveAccount,
+                  color: MyColors.black,
+                  fontWeight: FontWeight.normal,
                 ),
                 GestureDetector(
                   onTap: () {
                     context.pushNamed(MyRouts.signUp);
                   },
-                  child: const Text(
-                    MyStrings.signUp,
-                    style: TextStyle(color: MyColors.blue),
+                  child: const CustomText(
+                    text: MyStrings.signUp,
+                    color: MyColors.blue,
                   ),
                 ),
               ],

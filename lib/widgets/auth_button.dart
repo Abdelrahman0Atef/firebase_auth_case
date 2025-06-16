@@ -17,9 +17,8 @@ class AuthButton extends StatelessWidget {
         width: double.infinity,
         height: 50.h,
         child: Center(
-          child: Text(
-            text,
-            style: TextStyle(color: MyColors.white),
+          child: CustomText(
+            text: text,
           ),
         ),
       ),

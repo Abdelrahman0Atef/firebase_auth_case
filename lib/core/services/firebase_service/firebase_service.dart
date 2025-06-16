@@ -6,26 +6,27 @@ class FirebaseService {
 
   Future<void> createUser(String email, String password) async {
     await _auth.createUserWithEmailAndPassword(
-      email: email ?? '',
-      password: password ?? '',
+      email: email,
+      password: password,
     );
   }
 
-  Future<void> loginUser(String email, String password) async {
-    await _auth.signInWithEmailAndPassword(
-      email: email ?? '',
-      password: password ?? '',
+  Future<UserCredential> loginUser(String email, String password) async {
+    return await _auth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
     );
   }
 
-  Future<UserCredential> loginWithGoogle() async {
+  Future<User?> loginWithGoogle() async {
     final googleUser = await GoogleSignIn().signIn();
     final googleAuth = await googleUser?.authentication;
-    final userCredential = GoogleAuthProvider.credential(
+    final credential  = GoogleAuthProvider.credential(
       idToken: googleAuth?.idToken,
       accessToken: googleAuth?.accessToken,
     );
 
-    return await _auth.signInWithCredential(userCredential);
+    final userCredential = await _auth.signInWithCredential(credential );
+    return userCredential.user;
   }
 }

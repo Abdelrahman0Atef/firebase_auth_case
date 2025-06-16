@@ -17,18 +17,20 @@ class SignUpBody extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  MyStrings.name,
-                  style: TextStyle(fontSize: 32.sp, color: MyColors.black),
+                CustomText(
+                  text: MyStrings.name,
+                  fontSize: 32.sp,
+                  color: MyColors.black,
                 ),
               ],
             ),
             35.verticalSpace,
             Row(
               children: [
-                Text(
-                  MyStrings.signUp,
-                  style: TextStyle(fontSize: 24.sp, color: MyColors.black),
+                CustomText(
+                  text: MyStrings.signUp,
+                  fontSize: 24.sp,
+                  color: MyColors.black,
                 ),
               ],
             ),
@@ -50,20 +52,28 @@ class SignUpBody extends StatelessWidget {
             15.verticalSpace,
             AuthButton(onTap: () => vm.signUp(context), text: MyStrings.signUp),
             5.verticalSpace,
+            GoogleSignInButton(
+              onTap: () async {
+                await vm.googleLogin(context);
+              },
+              text: MyStrings.signIn,
+            ),
+            5.verticalSpace,
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  MyStrings.alreadyHaveAccount,
-                  style: TextStyle(color: MyColors.black),
+                const CustomText(
+                  text: MyStrings.alreadyHaveAccount,
+                  color: MyColors.black,
+                  fontWeight: FontWeight.normal,
                 ),
                 GestureDetector(
                   onTap: () {
                     context.pop();
                   },
-                  child: const Text(
-                    MyStrings.signIn,
-                    style: TextStyle(color: MyColors.blue),
+                  child: const CustomText(
+                    text: MyStrings.signIn,
+                    color: MyColors.blue,
                   ),
                 ),
               ],

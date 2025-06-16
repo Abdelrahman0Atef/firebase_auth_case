@@ -11,9 +11,18 @@ class SignInViewModel {
       EasyLoading.show();
 
       try {
-        await firebaseService.loginUser(email ?? '', password ?? '');
+        final userCredential = await firebaseService.loginUser(email ?? '', password ?? '');
         if (context.mounted) {
-          context.pushReplacementNamed(MyRouts.home);
+          final user = userCredential.user;
+          context.pushReplacementNamed(
+            MyRouts.home,
+              extra: {
+                'email': user?.email,
+                'name': null,
+                'image': null,
+                'isGoogle': false,
+              },
+          );
         }
       } on FirebaseAuthException catch (e) {
         showSnackBar(context, MyStrings.wrongEmailOrPassword);
@@ -26,9 +35,14 @@ class SignInViewModel {
 
   Future<void> googleLogin(BuildContext context) async {
     try {
-      await firebaseService.loginWithGoogle();
-      if (context.mounted) {
-        context.pushReplacementNamed(MyRouts.home);
+      final user = await firebaseService.loginWithGoogle();
+      if (context.mounted && user != null) {
+        context.pushReplacementNamed(MyRouts.home,extra: {
+          'email': user.email,
+          'name': user.displayName,
+          'image': user.photoURL,
+          'isGoogle': true,
+        },);
       }
     } catch (e) {
       showSnackBar(context, MyStrings.connectError);

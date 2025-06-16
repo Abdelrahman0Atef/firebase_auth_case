@@ -11,7 +11,9 @@ class SignUpViewModel {
       EasyLoading.show();
       try {
         await firebaseService.createUser(email ?? '', password ?? '');
-        context.pushReplacementNamed(MyRouts.home);
+        context.pushReplacementNamed(MyRouts.home,pathParameters: {
+          'email': Uri.encodeComponent(email!),
+        },);
       } on FirebaseAuthException catch (e) {
         if (e.code == FirebaseKey.weakPassword) {
           showSnackBar(context, MyStrings.weakPassword);
@@ -22,6 +24,17 @@ class SignUpViewModel {
         showSnackBar(context, e.toString());
       }
       EasyLoading.dismiss();
+    }
+  }
+
+  Future<void> googleLogin(BuildContext context) async {
+    try {
+      await firebaseService.loginWithGoogle();
+      if (context.mounted) {
+        context.pushReplacementNamed(MyRouts.home);
+      }
+    } catch (e) {
+      showSnackBar(context, MyStrings.connectError);
     }
   }
 }

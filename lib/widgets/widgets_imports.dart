@@ -9,3 +9,4 @@ part 'auth_button.dart';
 part 'auth_form_text_field.dart';
 part 'showSnackBar.dart';
 part 'google_sign_in_button.dart';
+part 'custom_text.dart';
