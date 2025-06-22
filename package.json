@@ -1,0 +1,31 @@
+{
+  "name": "firebase_auth_case",
+  "version": "1.0.0",
+  "description": "A new Flutter project.",
+  "main": "generateToken.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abdelrahman0Atef/firebase_auth_case.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Abdelrahman0Atef/firebase_auth_case/issues"
+  },
+  "homepage": "https://github.com/Abdelrahman0Atef/firebase_auth_case#readme",
+  "dependencies": {
+    "axios": "^1.10.0",
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0",
+    "firebase-admin": "^13.4.0",
+    "google-auth-library": "^10.1.0"
+  }
+}
