@@ -13,7 +13,7 @@ class CustomText extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-        fontSize: fontSize ?? 14.sp,
+        fontSize: fontSize?.sp ?? 14.sp,
         fontWeight: fontWeight ?? FontWeight.bold,
         color: color  ?? MyColors.white,
       ),

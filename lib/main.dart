@@ -7,10 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'core/services/locator_services/locator_services.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  FirebaseNotificationService().initNotification();
+  await FirebaseNotificationService().initNotification();
+  locatorServices();
   runApp(const MyApp());
 }
 

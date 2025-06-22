@@ -16,11 +16,18 @@ class FirebaseNotificationService {
     debugPrint('token $token');
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+
       NotificationService().showNotification(message);
+
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       NotificationService().showNotification(message);
     });
   }
+
+  Future<void> subscribeToTestTopic() async {
+    await _firebaseMessaging.subscribeToTopic('test');
+  }
+
 }

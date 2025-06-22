@@ -1,36 +1,67 @@
 part of '../home_imports.dart';
 
 class HomeBody extends StatelessWidget {
-  const HomeBody({
-    super.key,
-    required this.isGoogle,
-    required this.image,
-    required this.name,
-    required this.email,
-  });
+  const HomeBody({super.key, required this.vm, required this.user});
 
-  final bool isGoogle;
-  final String? image;
-  final String? name;
-  final String email;
+  final UserProfileModel user;
+  final HomeViewModel vm;
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child:
-          isGoogle
-              ? ListTile(
-                leading:
-                    image != null
-                        ? CircleAvatar(backgroundImage: NetworkImage(image!))
-                        : const CircularProgressIndicator(),
-                title: CustomText(text: name ?? 'No Name'),
-                subtitle: CustomText(
-                  text: email,
-                  fontWeight: FontWeight.normal,
-                ),
-              )
-              : CustomText(text: "Welcome, $email", fontSize: 16.sp),
+    return AnimatedBuilder(
+      animation: vm,
+      builder: (context, _) {
+        return Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              user.isGoogle
+                  ? ListTile(
+                    leading:
+                        user.image != null
+                            ? CircleAvatar(
+                              backgroundImage: NetworkImage(user.image!),
+                            )
+                            : const CircularProgressIndicator(),
+                    title: CustomText(text: user.name ?? MyStrings.noName),
+                    subtitle: CustomText(
+                      text: user.email,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  )
+                  : CustomText(
+                    text: '${MyStrings.welcome} ${user.email}',
+                    fontSize: 16,
+                  ),
+              20.verticalSpace,
+              DropdownButton<String>(
+                value: vm._selectedTopic,
+                hint: const CustomText(text: MyStrings.selectTopic),
+                dropdownColor: MyColors.black,
+                onChanged: (String? newValue) {
+                  if (newValue != null) {
+                    vm._changeTopic(newValue);
+                  }
+                },
+                items:
+                    MyStrings.topics.map<DropdownMenuItem<String>>((
+                      String topic,
+                    ) {
+                      return DropdownMenuItem<String>(
+                        value: topic,
+                        child: Center(child: CustomText(text: topic)),
+                      );
+                    }).toList(),
+              ),
+              16.verticalSpace,
+              ElevatedButton(
+                onPressed: vm._sendLocalNotification,
+                child: const CustomText(text: MyStrings.localNotification),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

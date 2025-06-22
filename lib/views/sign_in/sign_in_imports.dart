@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth_case/core/models/user_profile_model.dart';
 import 'package:firebase_auth_case/core/resources/my_colors/my_colors.dart';
 import 'package:firebase_auth_case/core/resources/my_routs/my_routs.dart';
 import 'package:firebase_auth_case/core/services/firebase_service/firebase_service.dart';
+import 'package:firebase_auth_case/core/services/locator_services/locator_services.dart';
 import 'package:firebase_auth_case/widgets/widgets_imports.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';

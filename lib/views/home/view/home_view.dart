@@ -1,38 +1,25 @@
 part of '../home_imports.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({
-    super.key,
-    required this.email,
-    this.name,
-    this.image,
-    required this.isGoogle,
-  });
+class HomeView extends StatefulWidget {
+  HomeView({super.key, required this.user});
 
-  final String email;
-  final String? name;
-  final String? image;
-  final bool isGoogle;
+  final UserProfileModel user;
+  final HomeViewModel vm = HomeViewModel();
 
-  factory HomeView.fromRouteExtras(Map<String, dynamic> extras) {
-    return HomeView(
-      email: extras['email'],
-      name: extras['name'],
-      image: extras['image'],
-      isGoogle: extras['isGoogle'] ?? false,
-    );
+  factory HomeView.fromRouteExtras(Object? extra) {
+    return HomeView(user: extra as UserProfileModel);
   }
 
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColors.navy,
-      body: HomeBody(
-        isGoogle: isGoogle,
-        image: image,
-        name: name,
-        email: email,
-      ),
+      body: HomeBody(vm: widget.vm, user: widget.user),
     );
   }
 }

@@ -7,6 +7,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 part 'auth_button.dart';
 part 'auth_form_text_field.dart';
-part 'showSnackBar.dart';
+part 'show_toast.dart';
 part 'google_sign_in_button.dart';
 part 'custom_text.dart';

@@ -11,6 +11,15 @@ class MyStrings{
   static const weakPassword = 'Weak Password Make It Stronger Like You';
   static const accountExists = 'The Account Already Exists Try To Sign In';
   static const connectError = 'There\'s an Error In Connection Try Again';
+  static const noName = 'No Name';
+  static const welcome = 'Welcome,';
+  static const test = 'Test';
+  static const subscribedTopic = 'You are subscribed to topic:';
+  static const localNotification = 'Test Local Notification';
+  static const inTopic = '✅ You are now in topic:';
+  static const selectTopic = 'Select a topic';
+  static const List<String> topics = ['news', 'sports', 'music', 'test'];
+
 }
 
 class FirebaseKey{

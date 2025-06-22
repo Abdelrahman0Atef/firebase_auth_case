@@ -1,40 +1,50 @@
 part of '../sign_up_imports.dart';
 
 class SignUpViewModel {
-  FirebaseService firebaseService = FirebaseService();
-  String? email;
-  String? password;
+  final FirebaseService _firebaseService = getIt<FirebaseService>();
+  String? _email;
+  String? _password;
   GlobalKey<FormState> formKey = GlobalKey();
 
-  Future<void> signUp(BuildContext context) async {
+  Future<void> _signUp(BuildContext context) async {
     if (formKey.currentState!.validate()) {
       EasyLoading.show();
       try {
-        await firebaseService.createUser(email ?? '', password ?? '');
-        context.pushReplacementNamed(MyRouts.home,pathParameters: {
-          'email': Uri.encodeComponent(email!),
-        },);
+        await _firebaseService.createUser(_email ?? '', _password ?? '');
+        context.pushReplacementNamed(
+          MyRouts.home,
+          extra: UserProfileModel(email: _email ?? '', isGoogle: false),
+        );
       } on FirebaseAuthException catch (e) {
         if (e.code == FirebaseKey.weakPassword) {
-          showSnackBar(context, MyStrings.weakPassword);
+          showToast(MyStrings.weakPassword);
         } else if (e.code == FirebaseKey.emailExists) {
-          showSnackBar(context, MyStrings.accountExists);
+          showToast(MyStrings.accountExists);
         }
       } catch (e) {
-        showSnackBar(context, e.toString());
+        showToast(e.toString());
+      } finally {
+        EasyLoading.dismiss();
       }
-      EasyLoading.dismiss();
     }
   }
 
-  Future<void> googleLogin(BuildContext context) async {
+  Future<void> _googleLogin(BuildContext context) async {
     try {
-      await firebaseService.loginWithGoogle();
-      if (context.mounted) {
-        context.pushReplacementNamed(MyRouts.home);
+      final user = await _firebaseService.loginWithGoogle();
+      if (context.mounted && user != null) {
+        context.pushReplacementNamed(
+          MyRouts.home,
+          extra: UserProfileModel(
+            email: user.email ?? '',
+            name: user.displayName,
+            image: user.photoURL,
+            isGoogle: true,
+          ),
+        );
       }
     } catch (e) {
-      showSnackBar(context, MyStrings.connectError);
+      showToast(MyStrings.connectError);
     }
   }
 }

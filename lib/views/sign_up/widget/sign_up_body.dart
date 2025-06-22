@@ -19,7 +19,7 @@ class SignUpBody extends StatelessWidget {
               children: [
                 CustomText(
                   text: MyStrings.name,
-                  fontSize: 32.sp,
+                  fontSize: 32,
                   color: MyColors.black,
                 ),
               ],
@@ -29,7 +29,7 @@ class SignUpBody extends StatelessWidget {
               children: [
                 CustomText(
                   text: MyStrings.signUp,
-                  fontSize: 24.sp,
+                  fontSize: 24,
                   color: MyColors.black,
                 ),
               ],
@@ -37,24 +37,24 @@ class SignUpBody extends StatelessWidget {
             15.verticalSpace,
             AuthFormTextField(
               onChanged: (data) {
-                vm.email = data;
+                vm._email = data;
               },
               hintText: MyStrings.enterEmail,
             ),
             10.verticalSpace,
             AuthFormTextField(
               onChanged: (data) {
-                vm.password = data;
+                vm._password = data;
               },
               obscureText: true,
               hintText: MyStrings.enterPassword,
             ),
             15.verticalSpace,
-            AuthButton(onTap: () => vm.signUp(context), text: MyStrings.signUp),
+            AuthButton(onTap: () => vm._signUp(context), text: MyStrings.signUp),
             5.verticalSpace,
             GoogleSignInButton(
               onTap: () async {
-                await vm.googleLogin(context);
+                await vm._googleLogin(context);
               },
               text: MyStrings.signIn,
             ),

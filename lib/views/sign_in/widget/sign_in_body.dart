@@ -10,7 +10,7 @@ class SignInBody extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10.h),
       child: Form(
-        key: vm.formKey,
+        key: vm._formKey,
         child: ListView(
           children: [
             50.verticalSpace,
@@ -19,7 +19,8 @@ class SignInBody extends StatelessWidget {
               children: [
                 CustomText(
                   text: MyStrings.name,
-                  fontSize: 32.sp, color: MyColors.black,
+                  fontSize: 32,
+                  color: MyColors.black,
                 ),
               ],
             ),
@@ -28,14 +29,15 @@ class SignInBody extends StatelessWidget {
               children: [
                 CustomText(
                   text: MyStrings.signIn,
-                  fontSize: 24.sp, color: MyColors.black,
+                  fontSize: 24,
+                  color: MyColors.black,
                 ),
               ],
             ),
             15.verticalSpace,
             AuthFormTextField(
               onChanged: (data) {
-                vm.email = data;
+                vm._email = data;
               },
               hintText: MyStrings.enterEmail,
             ),
@@ -43,16 +45,16 @@ class SignInBody extends StatelessWidget {
             AuthFormTextField(
               obscureText: true,
               onChanged: (data) {
-                vm.password = data;
+                vm._password = data;
               },
               hintText: MyStrings.enterPassword,
             ),
             15.verticalSpace,
-            AuthButton(onTap: () => vm.login(context), text: MyStrings.signIn),
+            AuthButton(onTap: () => vm._login(context), text: MyStrings.signIn),
             5.verticalSpace,
             GoogleSignInButton(
-              onTap:  () async {
-                await vm.googleLogin(context);
+              onTap: () async {
+                await vm._googleLogin(context);
               },
               text: MyStrings.signIn,
             ),
