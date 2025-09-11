@@ -8,6 +8,9 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      vm.firebaseAnalyticsServices.logScreen('home_screen');
+    });
     return AnimatedBuilder(
       animation: vm,
       builder: (context, _) {
@@ -55,7 +58,10 @@ class HomeBody extends StatelessWidget {
               ),
               16.verticalSpace,
               ElevatedButton(
-                onPressed: vm._sendLocalNotification,
+                onPressed: () {
+                  vm._sendLocalNotification();
+                  vm.pressTime();
+                },
                 child: const CustomText(text: MyStrings.localNotification),
               ),
             ],

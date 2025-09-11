@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/models/user_profile_model.dart';
 import '../../core/resources/my_colors/my_colors.dart';
+import '../../core/services/firebase_service/firebase_analytics_service.dart';
 import '../../core/services/notification_service/notification_service.dart';
 
 part 'view/home_view.dart';

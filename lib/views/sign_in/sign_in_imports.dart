@@ -10,6 +10,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/resources/my_strings/my_strings.dart';
+import '../../main.dart';
 
 part 'view/sign_in_view.dart';
 part 'viewmodel/sign_in_view_model.dart';

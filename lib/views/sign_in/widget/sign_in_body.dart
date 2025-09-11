@@ -50,11 +50,11 @@ class SignInBody extends StatelessWidget {
               hintText: MyStrings.enterPassword,
             ),
             15.verticalSpace,
-            AuthButton(onTap: () => vm._login(context), text: MyStrings.signIn),
+            AuthButton(onTap: () => vm.login(context), text: MyStrings.signIn),
             5.verticalSpace,
             GoogleSignInButton(
               onTap: () async {
-                await vm._googleLogin(context);
+                await vm.googleLogin(context);
               },
               text: MyStrings.signIn,
             ),
