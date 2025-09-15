@@ -19,11 +19,23 @@ class _SignInViewState extends State<SignInView> {
   }
 
   // محاكاة التحقق من حالة الدفع
-  void _checkPaymentStatus() {
+  void _checkPaymentStatus() async {
     // هنا يمكنك استبدال هذا بـ API أو استعلام من قاعدة بيانات أو Firebase
     // على سبيل المثال:
-    setState(() {
-      isAppPaid = false; // يتم تحديد هذا بناءً على حالتك (true أو false)
+
+    final remoteConfig = FirebaseRemoteConfig.instance;
+
+    await remoteConfig.setConfigSettings(
+      RemoteConfigSettings(
+        fetchTimeout: const Duration(minutes: 1),
+        minimumFetchInterval: Duration.zero,
+      ),
+    );
+    await remoteConfig.fetchAndActivate();
+    setState(()  {
+
+      isClientPaid = remoteConfig.getBool("clientPaid");
+      isAppPaid = isClientPaid; // يتم تحديد هذا بناءً على حالتك (true أو false)
       paymentMessage = "أنت بحاجة للدفع لتتمكن من استخدام التطبيق"; // الرسالة المناسبة
     });
   }

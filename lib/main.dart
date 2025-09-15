@@ -5,7 +5,6 @@ import 'package:firebase_auth_case/core/base/go_router/go_router.dart';
 import 'package:firebase_auth_case/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -25,18 +24,6 @@ void main() async {
   if (kDebugMode) {
     await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(true);
   }
-
-  final remoteConfig = FirebaseRemoteConfig.instance;
-
-  await remoteConfig.setConfigSettings(
-    RemoteConfigSettings(
-      fetchTimeout: const Duration(minutes: 1),
-      minimumFetchInterval: Duration.zero,
-    ),
-  );
-  await remoteConfig.fetchAndActivate();
-
-  isClientPaid = remoteConfig.getBool("clientPaid");
 
   runApp(const MyApp());
 }
